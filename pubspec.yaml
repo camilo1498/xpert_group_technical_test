@@ -1,0 +1,23 @@
+name: xpert_goup_tecnical_test
+description: A new Flutter project.
+version: 0.0.1
+
+environment:
+  sdk: '>=2.19.6 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  get: ^4.6.5
+  dio: ^5.1.2
+  flutter_screenutil: ^5.7.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
