@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<GlobalController>(
+        init: GlobalController(),
         builder: (ctrl) =>
             NotificationListener<OverscrollIndicatorNotification>(
               onNotification: (overscroll) {
@@ -27,9 +28,11 @@ class MyApp extends StatelessWidget {
                 minTextAdapt: true,
                 splitScreenMode: true,
                 builder: (_, __) => GetMaterialApp(
-                  title: 'Flutter Demo',
+                  title: 'Url Shortener',
                   getPages: AppPages.appPages,
+                  debugShowCheckedModeBanner: false,
                   initialRoute: AppRoutes.splashPage,
+                  defaultTransition: Transition.fadeIn,
                   theme: ThemeData(
                     primarySwatch: Colors.red,
                   ),

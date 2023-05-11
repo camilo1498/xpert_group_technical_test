@@ -11,6 +11,7 @@ dependencies:
 
   get: ^4.6.5
   dio: ^5.1.2
+  qr_flutter: ^4.0.0
   flutter_screenutil: ^5.7.0
 
 dev_dependencies:
@@ -21,3 +22,56 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  assets:
+    - assets/images/
+
+  fonts:
+    - family: OpenSans_Bold
+      fonts:
+        - asset: fonts/OpenSans/OpenSans_Bold.ttf
+          style: normal
+    - family: OpenSans_BoldItalic
+      fonts:
+        - asset: fonts/OpenSans/OpenSans_BoldItalic.ttf
+          style: normal
+    - family: OpenSans_ExtraBold
+      fonts:
+        - asset: fonts/OpenSans/OpenSans_ExtraBold.ttf
+          style: normal
+    - family: OpenSans_ExtraBoldItalic
+      fonts:
+        - asset: fonts/OpenSans/OpenSans_ExtraBoldItalic.ttf
+          style: normal
+    - family: OpenSans_Italic
+      fonts:
+        - asset: fonts/OpenSans/OpenSans_Italic.ttf
+          style: normal
+    - family: OpenSans_Light
+      fonts:
+        - asset: fonts/OpenSans/OpenSans_Light.ttf
+          style: normal
+    - family: OpenSans_LightItalic
+      fonts:
+        - asset: fonts/OpenSans/OpenSans_LightItalic.ttf
+          style: normal
+    - family: OpenSans_Medium
+      fonts:
+        - asset: fonts/OpenSans/OpenSans_Medium.ttf
+          style: normal
+    - family: OpenSans_MediumItalic
+      fonts:
+        - asset: fonts/OpenSans/OpenSans_MediumItalic.ttf
+          style: normal
+    - family: OpenSans_Regular
+      fonts:
+        - asset: fonts/OpenSans/OpenSans_Regular.ttf
+          style: normal
+    - family: OpenSans_SemiBold
+      fonts:
+        - asset: fonts/OpenSans/OpenSans_SemiBold.ttf
+          style: normal
+    - family: OpenSans_SemiBoldItalic
+      fonts:
+        - asset: fonts/OpenSans/OpenSans_SemiBoldItalic.ttf
+          style: normal
