@@ -47,6 +47,11 @@ class MainPage extends StatelessWidget {
                   )
                 ],
               ),
+              TextWidget(
+                'XpertGroup2',
+                font: AppFont.h2,
+                color: AppColor.blackHardness,
+              ),
 
               /// pages
               Expanded(

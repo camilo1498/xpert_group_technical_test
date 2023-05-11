@@ -39,31 +39,45 @@ class HomePage extends StatelessWidget {
                       /// QR (add conditional when data is not null)
                       GetBuilder<HomeController>(
                           id: 'shorten_url',
-                          builder: (ctrl) => RepaintBoundary(
-                                key: qrKey,
-                                child: Center(
-                                  child: SizedBox(
-                                    width: 600.w,
-                                    height: 600.w,
-                                    child: ctrl.shortenUrl.isNotEmpty
-                                        ? QrImage(
-                                            size: 600.w,
-                                            version: QrVersions.auto,
-                                            gapless: false,
-                                            eyeStyle: const QrEyeStyle(
-                                                eyeShape: QrEyeShape.circle),
-                                            foregroundColor:
-                                                AppColor.blackHardness,
-                                            padding: EdgeInsets.zero,
-                                            data: ctrl.shortenUrl,
-                                          )
-                                        : Icon(
-                                            Icons.qr_code,
-                                            size: 600.w,
-                                            color: AppColor.blackHardness25,
-                                          ),
+                          builder: (ctrl) => Column(
+                                children: [
+                                  /// qr
+                                  RepaintBoundary(
+                                    key: qrKey,
+                                    child: Center(
+                                      child: SizedBox(
+                                        width: 600.w,
+                                        height: 600.w,
+                                        child: ctrl.shortenUrl.isNotEmpty
+                                            ? QrImage(
+                                                size: 600.w,
+                                                version: QrVersions.auto,
+                                                gapless: false,
+                                                eyeStyle: const QrEyeStyle(
+                                                    eyeShape:
+                                                        QrEyeShape.circle),
+                                                foregroundColor:
+                                                    AppColor.blackHardness,
+                                                padding: EdgeInsets.zero,
+                                                data: ctrl.shortenUrl,
+                                              )
+                                            : Icon(
+                                                Icons.qr_code,
+                                                size: 600.w,
+                                                color: AppColor.blackHardness25,
+                                              ),
+                                      ),
+                                    ),
                                   ),
-                                ),
+                                  20.verticalSpace,
+
+                                  /// generated url
+                                  TextWidget(
+                                    ctrl.shortenUrl,
+                                    font: AppFont.body,
+                                    color: AppColor.blackHardness,
+                                  ),
+                                ],
                               )),
                       50.verticalSpace,
 
