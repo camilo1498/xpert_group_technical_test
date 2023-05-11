@@ -6,7 +6,7 @@ class SplashScreenController extends GetxController {
   void onInit() async {
     /// wait two seconds and then go to home page
     await 2.seconds.delay();
-    Get.offNamed(AppRoutes.homePage);
+    Get.offNamed(AppRoutes.mainPage);
     super.onInit();
   }
 }
