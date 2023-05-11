@@ -9,6 +9,6 @@ class MainController extends GetxController {
     if (selectItemBottomNav == indexPag) return;
     selectItemBottomNav = indexPag;
     update(['bottom_bar']);
-    return Get.offNamed(route, id: 0);
+    return Get.offAllNamed(route, id: 0);
   }
 }

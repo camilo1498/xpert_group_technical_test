@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:xpert_goup_tecnical_test/src/core/global/app_colors_global.dart';
-import 'package:xpert_goup_tecnical_test/src/core/global/app_global_asset.dart';
 import 'package:xpert_goup_tecnical_test/src/core/global/app_utils_global.dart';
 import 'package:xpert_goup_tecnical_test/src/core/global/global_app_font.dart';
 import 'package:xpert_goup_tecnical_test/src/presentation/pages/home_page/home_controller.dart';
@@ -19,6 +18,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final GlobalKey qrKey = GlobalKey();
     return GetBuilder<HomeController>(
       id: 'home_page',
       builder: (ctrl) => GestureDetector(
@@ -29,32 +29,6 @@ class HomePage extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 80.w),
             child: Column(
               children: [
-                20.verticalSpace,
-
-                /// title
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      AppGlobalAsset.appIcon,
-                      height: 80.w,
-                      width: 80.w,
-                    ),
-                    40.horizontalSpace,
-                    TextWidget(
-                      'Url shortener',
-                      font: AppFont.h1,
-                      color: AppColor.blackHardness,
-                    ),
-
-                    /// white space to equilibrate text balance
-                    SizedBox(
-                      height: 80.w,
-                      width: 80.w,
-                    )
-                  ],
-                ),
                 150.verticalSpace,
 
                 /// body
@@ -65,14 +39,14 @@ class HomePage extends StatelessWidget {
                       /// QR (add conditional when data is not null)
                       GetBuilder<HomeController>(
                           id: 'shorten_url',
-                          builder: (ctrl) => Center(
-                                child: SizedBox(
-                                  width: 600.w,
-                                  height: 600.w,
-                                  child: ctrl.shortenUrl.isNotEmpty
-                                      ? RepaintBoundary(
-                                          key: ctrl.qrKey,
-                                          child: QrImage(
+                          builder: (ctrl) => RepaintBoundary(
+                                key: qrKey,
+                                child: Center(
+                                  child: SizedBox(
+                                    width: 600.w,
+                                    height: 600.w,
+                                    child: ctrl.shortenUrl.isNotEmpty
+                                        ? QrImage(
                                             size: 600.w,
                                             version: QrVersions.auto,
                                             gapless: false,
@@ -82,13 +56,13 @@ class HomePage extends StatelessWidget {
                                                 AppColor.blackHardness,
                                             padding: EdgeInsets.zero,
                                             data: ctrl.shortenUrl,
+                                          )
+                                        : Icon(
+                                            Icons.qr_code,
+                                            size: 600.w,
+                                            color: AppColor.blackHardness25,
                                           ),
-                                        )
-                                      : Icon(
-                                          Icons.qr_code,
-                                          size: 600.w,
-                                          color: AppColor.blackHardness25,
-                                        ),
+                                  ),
                                 ),
                               )),
                       50.verticalSpace,
@@ -207,7 +181,8 @@ class HomePage extends StatelessWidget {
                                     child: ButtonWidget(
                                       text: 'Compartir',
                                       font: AppFont.bodyBold,
-                                      onTap: ctrl.onTapShareButton,
+                                      onTap: () =>
+                                          ctrl.onTapShareButton(qrKey: qrKey),
                                       textColor: AppColor.whiteSnow,
                                       background: AppColor.redEuphoria,
                                     ),

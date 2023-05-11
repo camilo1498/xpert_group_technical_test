@@ -3,12 +3,15 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:xpert_goup_tecnical_test/src/core/global/app_utils_global.dart';
+import 'package:xpert_goup_tecnical_test/src/data/models/history_model.dart';
 import 'package:xpert_goup_tecnical_test/src/data/services/save_widget_as_image.dart';
 import 'package:xpert_goup_tecnical_test/src/data/source/api_source/data_post_service.dart';
+import 'package:xpert_goup_tecnical_test/src/data/source/local_source/local_storage.dart';
 
 class HomeController extends GetxController {
   /// instances
   final DataPostService _dataPostService = DataPostService();
+  final LocalStorage _localStorage = LocalStorage();
 
   /// variables
   bool validateUrl = false;
@@ -20,9 +23,6 @@ class HomeController extends GetxController {
 
   /// focus
   FocusNode urlNode = FocusNode();
-
-  /// keys
-  final GlobalKey qrKey = GlobalKey();
 
   @override
   void onInit() {
@@ -61,6 +61,8 @@ class HomeController extends GetxController {
         /// set success url
         if (res['success'] == true) {
           shortenUrl = res['data'];
+          _localStorage.addItem(
+              data: HistoryModel(url: res['data'], createdAt: DateTime.now()));
         } else {
           /// show error message
           shortenUrl = '';
@@ -85,7 +87,7 @@ class HomeController extends GetxController {
     update(['shorten_url']);
   }
 
-  onTapShareButton() async {
+  onTapShareButton({required GlobalKey qrKey}) async {
     String res = await SaveWidgetImage.takePicture(contentKey: qrKey);
     if (res.isNotEmpty) {
       Share.shareXFiles([XFile(res)], text: shortenUrl);
